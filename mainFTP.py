@@ -1,5 +1,6 @@
 from ftp_client import getArchivoConfig, setArchivoConfig, deleteOld
 from ssh_client import reboot
+from pruebamail import SendMail
 import filecmp
 
 repetir = True
@@ -33,15 +34,19 @@ while repetir:
         setArchivoConfig(ip,usuario,password)
         reboot(ip, usuario, password)
     elif(opcion==4):
+        isChange=False
         with open('archivos/archivos_user_r1.startup-config', 'r') as file1:
             with open('archivos/ospf-R1.startup-config.txt', 'r') as file2:
                 with open ("archivos/diff.txt", "w") as out_file:
                     f2_lines = set(file2)
                     for line in file1:
                         if line not in f2_lines:
+                            isChange=True
                             print(line)
                             out_file.write(line)
                             f2_lines.add(line)   
+        if(isChange):
+            SendMail()
     elif(opcion==5):
         deleteOld(ip, usuario, password)  
     else:
