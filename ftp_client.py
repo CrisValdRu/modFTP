@@ -53,22 +53,22 @@ def deleteOld(ip, usuario,password):
     ftp = createFTP(ip,usuario,password)
     files = obtenerNombreArchivos(ftp)
     numArchivos=len(files)
-    if(numArchivos==4):
+    if(numArchivos==5):
         ftp.delete("v1.startup-config")
-    elif(numArchivos==5):
-        ftp.delete("v1.startup-config")
-        ftp.delete("v2.startup-config")
     elif(numArchivos==6):
         ftp.delete("v1.startup-config")
         ftp.delete("v2.startup-config")
-        ftp.rename("v3.startup-config","v1.startup-config")
     elif(numArchivos==7):
+        ftp.delete("v1.startup-config")
+        ftp.delete("v2.startup-config")
+        ftp.rename("v3.startup-config","v1.startup-config")
+    elif(numArchivos==8):
         ftp.delete("v1.startup-config")
         ftp.delete("v2.startup-config")
         ftp.rename("v3.startup-config","v1.startup-config")
         ftp.rename("v4.startup-config","v2.startup-config")
     else:
-        print("directorio vacio")
+        print("directorio sin versiones")
     ftp.quit()
 
 def createFTP(ip, usuario, password):
