@@ -17,15 +17,15 @@ def upload(ftp, file):
         files = obtenerNombreArchivos(ftp)
         numArchivos=len(files)
         print(numArchivos)
-        if(numArchivos==1):
+        if(numArchivos==4):
             nombreArchivo="v1.startup-config"
-        elif(numArchivos==2):
-            nombreArchivo="v2.startup-config"
-        elif(numArchivos==3):
-            nombreArchivo="v3.startup-config"
-        elif(numArchivos==4):
-            nombreArchivo="v4.startup-config"
         elif(numArchivos==5):
+            nombreArchivo="v2.startup-config"
+        elif(numArchivos==6):
+            nombreArchivo="v3.startup-config"
+        elif(numArchivos==7):
+            nombreArchivo="v4.startup-config"
+        elif(numArchivos==8):
             ftp.delete("v1.startup-config")
             ftp.rename("v2.startup-config","v1.startup-config")
             ftp.rename("v3.startup-config","v2.startup-config")
