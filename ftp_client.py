@@ -46,7 +46,7 @@ def getArchivoConfig(ip,usuario,password):
 
 def setArchivoConfig(ip,usuario,password):
     ftp = createFTP(ip,usuario,password)
-    upload(ftp,"archivos/"+ip+".startup-config")
+    upload(ftp,"archivos/"+ip+"_startup-config")
     ftp.quit()
 
 def deleteOld(ip, usuario,password):
