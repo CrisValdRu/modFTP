@@ -15,7 +15,8 @@ while repetir:
         '6) Copiar la configuracion de inicio a la configuracion en ejecucion')
     
     opcion=int(input())
-    """print('Ingresa direccion ip del servidor')
+    
+    print('Ingresa direccion ip del servidor')
     ip=input()
     print('Ingresa usuario')
     usuario=input()
@@ -25,7 +26,7 @@ while repetir:
     usuario="archivos_user"
     password="123456"
     ip="localhost"
-    
+    """
     if(opcion==1):
         getArchivoConfig(ip,usuario,password)
     elif(opcion==2):
@@ -35,6 +36,7 @@ while repetir:
         reboot(ip, usuario, password)
     elif(opcion==4):
         isChange=False
+        print("Cambios en :")
         with open('archivos/archivos_user_r1.startup-config', 'r') as file1:
             with open('archivos/ospf-R1.startup-config.txt', 'r') as file2:
                 with open ("archivos/diff.txt", "w") as out_file:

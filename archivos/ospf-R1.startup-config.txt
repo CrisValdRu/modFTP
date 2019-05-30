@@ -1,4 +1,4 @@
-hostname R1tt
+hostname R2
 !
 service tftp
 service telnet

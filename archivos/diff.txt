@@ -1,1 +1,1 @@
-hostname R1
+hostname equipo2

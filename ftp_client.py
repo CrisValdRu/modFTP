@@ -17,15 +17,15 @@ def upload(ftp, file):
         files = obtenerNombreArchivos(ftp)
         numArchivos=len(files)
         print(numArchivos)
-        if(numArchivos==0):
+        if(numArchivos==1):
             nombreArchivo="v1.startup-config"
-        elif(numArchivos==1):
-            nombreArchivo="v2.startup-config"
         elif(numArchivos==2):
-            nombreArchivo="v3.startup-config"
+            nombreArchivo="v2.startup-config"
         elif(numArchivos==3):
-            nombreArchivo="v4.startup-config"
+            nombreArchivo="v3.startup-config"
         elif(numArchivos==4):
+            nombreArchivo="v4.startup-config"
+        elif(numArchivos==5):
             ftp.delete("v1.startup-config")
             ftp.rename("v2.startup-config","v1.startup-config")
             ftp.rename("v3.startup-config","v2.startup-config")
@@ -34,17 +34,19 @@ def upload(ftp, file):
         else:
             print("error hay más de 4 archivos")
         ftp.storbinary("STOR " + nombreArchivo, open(file, "rb"), 1024)
+        ftp.storbinary("STOR " + "startup-config", open(file, "rb"), 1024)
+        
         
         
 
 def getArchivoConfig(ip,usuario,password):
     ftp = createFTP(ip,usuario,password)
-    getFile(ftp,'r1.startup-config',ip)
+    getFile(ftp,'startup-config',ip)
     ftp.quit()
 
 def setArchivoConfig(ip,usuario,password):
     ftp = createFTP(ip,usuario,password)
-    upload(ftp,"archivos/archivos_user_r1.startup-config")
+    upload(ftp,"archivos/"+ip+".startup-config")
     ftp.quit()
 
 def deleteOld(ip, usuario,password):
@@ -73,7 +75,7 @@ def createFTP(ip, usuario, password):
     directory="/home/"+usuario+"/Documentos"
     ftp = ftplib.FTP(ip)
     ftp.login(usuario, password)
-    ftp.cwd(directory)         # change directory to /home/user/Escritorio
+    #ftp.cwd(directory)         # change directory to /home/user/Escritorio
     return ftp
 
 def obtenerNombreArchivos(ftp):
